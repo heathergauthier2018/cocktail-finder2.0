@@ -1,6 +1,7 @@
 # Cocktail Finder
 
-**Live demo:** https://heathergauthier2018.github.io/cocktail-finder/  
+**Live demo:** https://heathergauthier2018.github.io/cocktail-finder2.0/
+
 Find random cocktails or search by name using TheCocktailDB. Save favorites locally.
 
 ## Features
