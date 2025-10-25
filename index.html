@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+
+  <link rel="preconnect" href="https://www.thecocktaildb.com" crossorigin>
+  <title>Cocktail Finder — Random + Search (v607)</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Main CSS (cache-busted) -->
+  <link rel="stylesheet" href="styles.css?v=607" />
+
+  <!-- Minimal base styles shared with the external CSS -->
+  <style>
+    [hidden]{display:none!important;}
+    html,body{height:100%}
+    body{display:flex!important;flex-direction:column!important;min-height:100vh!important}
+    main.container{flex:1 0 auto!important}
+    hr{display:none!important}
+
+    dialog.app-dialog{
+      border:0; border-radius:16px; padding:0; overflow:hidden;
+      max-width:720px; width:92vw; color:#fff;
+      background:rgba(17,24,39,.96); backdrop-filter:blur(8px);
+      box-shadow:0 30px 60px rgba(0,0,0,.45);
+    }
+    .dlg-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.08)}
+    .dlg-title{margin:0;font:700 18px/1.2 "Playfair Display",Georgia,serif}
+    .dlg-body{padding:14px}
+    .dlg-actions{display:flex;gap:10px;justify-content:flex-end;padding:12px 14px;border-top:1px solid rgba(255,255,255,.08)}
+    .btn-dlg{background:#0b1020;color:#fff;border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:8px 12px;cursor:pointer}
+
+    /* toast base */
+    #toast{position:fixed;left:50%;transform:translateX(-50%);
+      bottom:calc(16px + env(safe-area-inset-bottom));z-index:9999;
+      background:rgba(17,24,39,.92);color:#fff;border-radius:12px;
+      padding:.65rem .9rem;display:none;gap:.75rem;align-items:center;
+      box-shadow:0 10px 30px rgba(0,0,0,.3);backdrop-filter:saturate(120%) blur(6px);font-size:.95rem}
+    #toast.show{display:flex}
+  </style>
+</head>
+<body>
+  <div class="bg-overlay" aria-hidden="true"></div>
+
+  <header class="app-header">
+    <h1 class="brand-title">COCKTAIL FINDER</h1>
+    <p class="brand-subtitle">RANDOM SIPS · CURATED PICKS</p>
+  </header>
+
+  <main class="container">
+    <!-- Tabs -->
+    <nav class="tabs">
+      <button class="tab active" data-tab="random">🍹 Random</button>
+      <button class="tab" data-tab="search">🔎 Search</button>
+    </nav>
+
+    <p id="status" class="status" aria-live="polite" role="status"></p>
+
+    <!-- Random -->
+    <section id="pane-random" class="pane">
+      <div class="controls">
+        <button id="newBtn" class="btn primary">New Drink</button>
+        <button id="saveBtn" class="btn">⭐ Save</button>
+        <button id="copyBtn" class="btn">📋 Copy</button>
+        <button id="shareBtn" class="btn">🔗 Share</button>
+        <button id="printBtn" class="btn">🖨️ Print</button>
+      </div>
+
+      <article id="card" class="card" hidden>
+        <img id="thumb" class="thumb" alt="Drink image" />
+        <div class="card-body">
+          <h2 id="title" class="card-title"></h2>
+          <p id="meta" class="muted"></p>
+          <div class="grid-2">
+            <div>
+              <h3 class="card-section">Ingredients</h3>
+              <ul id="ingredients" class="ing-list"></ul>
+            </div>
+            <div>
+              <h3 class="card-section">Instructions</h3>
+              <p id="instructions" class="instructions"></p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Search -->
+    <section id="pane-search" class="pane" hidden>
+      <form id="searchForm" class="controls" autocomplete="off">
+        <input id="searchInput" type="text" placeholder="Search by name (e.g., margarita)" list="nameSuggestions" required />
+        <datalist id="nameSuggestions"></datalist>
+        <button type="submit" class="btn primary">Search</button>
+        <button type="button" id="randomBtn" class="btn">🎲 Random</button>
+      </form>
+
+      <!-- Result counter -->
+      <p id="resultCount" class="muted small" style="margin:.25rem 0 .5rem"></p>
+
+      <section id="results" class="grid"></section>
+
+      <dialog id="detailsDialog" class="app-dialog">
+        <div class="dlg-head">
+          <h2 id="dTitle" class="dlg-title"></h2>
+          <button id="closeDialog" class="btn-dlg" aria-label="Close">✕</button>
+        </div>
+        <div class="dlg-body">
+          <img id="dImg" alt="" style="width:100%;border-radius:12px;margin-bottom:10px"/>
+          <p id="dMeta" class="muted"></p>
+          <h3 class="card-section">Ingredients</h3>
+          <ul id="dIngredients" class="ing-list"></ul>
+          <h3 class="card-section">Instructions</h3>
+          <p id="dInstructions" class="instructions"></p>
+        </div>
+        <div class="dlg-actions">
+          <button id="dSaveBtn" class="btn-dlg">⭐ Save</button>
+          <button id="dCopyBtn" class="btn-dlg">📋 Copy</button>
+          <button id="dShareBtn" class="btn-dlg">🔗 Share</button>
+          <button id="dPrintBtn" class="btn-dlg">🖨️ Print</button>
+        </div>
+      </dialog>
+    </section>
+
+    <!-- Favorites -->
+    <section class="favs">
+      <details open>
+        <summary>⭐ Favorites (<span id="favCount">0</span>)</summary>
+        <div class="fav-header" style="gap:.5rem">
+          <span class="muted small">Saved drinks</span>
+          <div style="display:flex;gap:.5rem;align-items:center">
+            <button id="downloadFavs" class="btn subtle" type="button" title="Download favorites as PDF">Download Favorites (PDF)</button>
+            <button id="clearFavs" class="btn subtle" type="button">Clear all</button>
+          </div>
+        </div>
+        <ul id="favList" class="fav-list"></ul>
+      </details>
+    </section>
+  </main>
+
+  <footer class="footer" id="site-footer">
+    <small>
+      Data &amp; images:
+      <a href="https://www.thecocktaildb.com/api.php" target="_blank" rel="noreferrer noopener">TheCocktailDB</a>
+      · <span id="build">v607</span>
+    </small>
+  </footer>
+
+  <!-- Share dialog (multi-option sheet; no "Copy link") -->
+  <dialog id="shareDialog" class="app-dialog">
+    <div class="dlg-head">
+      <h3 class="dlg-title">Share</h3>
+      <button id="shareClose" class="btn-dlg" aria-label="Close">✕</button>
+    </div>
+    <div class="dlg-body">
+      <p id="sharePreview" class="muted" style="word-break:break-word"></p>
+
+      <div class="share-list" style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <button id="shareEmail" class="btn-dlg">✉️ Email recipe</button>
+        <button id="shareSMS" class="btn-dlg">📱 SMS / Messages</button>
+        <button id="shareWhatsApp" class="btn-dlg">🟢 WhatsApp</button>
+        <button id="shareTelegram" class="btn-dlg">🔵 Telegram</button>
+        <button id="shareX" class="btn-dlg">𝕏 Post</button>
+        <button id="shareFB" class="btn-dlg">📘 Facebook</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Print preview dialog (mobile-friendly) -->
+  <dialog id="printDialog" class="app-dialog">
+    <div class="dlg-head">
+      <h3 id="pTitle" class="dlg-title">Print</h3>
+      <button id="pClose" class="btn-dlg">✕</button>
+    </div>
+    <div class="dlg-body">
+      <p id="pMeta" class="muted"></p>
+      <div style="display:grid;grid-template-columns:140px 1fr;gap:14px">
+        <img id="pImg" alt="" style="width:100%;border-radius:10px">
+        <div>
+          <h4 style="margin:.3rem 0">Ingredients</h4>
+          <ul id="pIngredients"></ul>
+          <h4 style="margin:.6rem 0 .3rem">Instructions</h4>
+          <p id="pInstructions"></p>
+        </div>
+      </div>
+    </div>
+    <div class="dlg-actions">
+      <button id="pPrint" class="btn-dlg">Print</button>
+    </div>
+  </dialog>
+
+  <!-- Toast -->
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="script.js?v=607"></script>
+</body>
+</html>

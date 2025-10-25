@@ -1,0 +1,258 @@
+/* ================= styles.css (v607) ================= */
+
+* { box-sizing: border-box }
+
+:root{
+  --accent:   #ff8bd1;
+  --accent-2: #b5ff7a;
+  --ink:      #1a1633;
+  --text:     #ffffff;
+  --muted:    #cbc8dc;
+  --border:   rgba(255,255,255,.16);
+
+  --overlay-strength: .50;
+  --vignette-strength: .35;
+}
+
+html, body { height: 100% }
+
+body{
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  color: var(--text);
+
+  background-image: url("./img/cocktail.png"), linear-gradient(120deg, #0a0a1a 0%, #1b0e39 55%, #2a0b28 100%);
+  background-size: cover, auto;
+  background-position: center top, center;
+  background-repeat: no-repeat, no-repeat;
+  background-attachment: fixed, scroll;
+
+  overflow-x: hidden;
+}
+
+main.container{ flex: 1 0 auto }
+
+.bg-overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 120% at 50% 0%,
+      rgba(0,0,0, calc(var(--vignette-strength) + .10)) 0%,
+      rgba(0,0,0, var(--vignette-strength)) 60%,
+      rgba(0,0,0, calc(var(--vignette-strength) + .15)) 100%),
+    rgba(0,0,0, var(--overlay-strength));
+}
+
+header, main, footer, .app, .container { position: relative; z-index: 1; }
+
+/* ================ Header ================ */
+.app-header{ padding: 2.2rem 1rem .75rem; text-align: center }
+
+.brand-title{
+  margin: 0;
+  font-family: "Cinzel Decorative","Playfair Display",serif;
+  font-weight: 700;
+  letter-spacing: .5px;
+  color: #ffd6ec;
+  text-shadow: 0 3px 18px rgba(0,0,0,.35);
+  font-size: clamp(2.0rem, 4.8vw, 3.0rem);
+}
+.brand-subtitle{
+  margin: .35rem 0 0;
+  font-family: "Playfair Display",serif;
+  font-weight: 600;
+  letter-spacing: .12em;
+  color: #bfffa1;
+  text-transform: uppercase;
+  opacity: .9;
+  font-size: clamp(.85rem, 2.4vw, 1rem);
+}
+
+.muted{ color: var(--muted) }
+.small{ font-size: .9rem }
+.container{ max-width: 1000px; margin: 0 auto; padding: 1rem }
+
+/* ================ Tabs ================ */
+.tabs{ display:flex; gap:.5rem; margin-bottom:1rem }
+.tab{
+  padding:.65rem 1rem;
+  border-radius:14px;
+  cursor:pointer;
+  border:2px solid rgba(26,22,51,.15);
+  background:#ffffff; color: var(--ink);
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(0,0,0,.18);
+  transition: transform .08s ease, box-shadow .15s ease;
+}
+.tab:hover{ transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,.22); }
+.tab.active{
+  border-color: var(--accent);
+  outline: 2px solid rgba(255,139,209,.35);
+}
+.status{ min-height:1.5rem; color:var(--muted) }
+
+/* ================ Buttons ================ */
+.controls{ display:flex; gap:.5rem; flex-wrap:wrap; margin:.75rem 0 }
+.btn{
+  padding:.75rem 1.05rem;
+  border-radius:14px;
+  cursor:pointer;
+  color:var(--ink);
+  border:2px solid rgba(26,22,51,.15);
+  background:#ffffff;
+  font-weight:700;
+  box-shadow:0 4px 14px rgba(0,0,0,.18);
+  transition: transform .08s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.btn:hover{ transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,0,0,.22); }
+.btn.primary{ border-color: var(--accent); color:#7e0c50; }
+.btn.small{ padding:.35rem .65rem; font-weight:600 }
+.btn-ghost.small{
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 10px;
+  padding: .35rem .6rem;
+  font-size: .9rem;
+}
+.btn-ghost.small:hover{ background: rgba(255,255,255,.08); }
+
+/* ================ Cards & grids ================ */
+.pane{ margin-bottom:1.25rem }
+
+.card{
+  display:grid; grid-template-columns:1fr 2fr;
+  border-radius:18px; overflow:hidden;
+  background:#0d0b19;
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow: 0 8px 28px rgba(0,0,0,.35);
+}
+.thumb{ width:100%; height:100%; object-fit:cover }
+.card-body{ padding:1.1rem 1.25rem }
+.grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:.75rem }
+
+.card-title{
+  font-family: "Playfair Display", serif;
+  font-weight: 700; letter-spacing: .3px;
+  color: #ffd0ea; margin: .15rem 0 .35rem;
+}
+.card-section{
+  font-family: "Playfair Display", serif;
+  font-weight: 700; color: #bfffa1; margin: .2rem 0 .35rem;
+}
+.ing-list li, .instructions{
+  color: #f5f3fa; line-height: 1.55;
+}
+
+.grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:1rem }
+.card-sm{
+  background:#0d0b19;
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:16px; overflow:hidden; display:flex; flex-direction:column;
+  box-shadow: 0 5px 20px rgba(0,0,0,.28);
+}
+.card-sm img{ width:100%; aspect-ratio:4/3; object-fit:cover }
+.card-sm .pad{ padding:.75rem }
+.inline-actions{ display:flex; gap:.5rem; margin-top:.5rem }
+
+/* ================ Dialog ================ */
+dialog{
+  border:none; border-radius:16px; width:min(720px,92%); padding:0;
+  background:#0d0b19; color:var(--text);
+  box-shadow: 0 12px 36px rgba(0,0,0,.45);
+}
+.dialog-content{ padding:1rem 1.25rem; position:relative }
+
+/* IMPORTANT: apply flex/scroll ONLY when open, to not override native 'closed' display:none */
+.app-dialog{ max-height:92vh; }
+.app-dialog .dlg-body{ max-height: none; }
+.app-dialog[open]{ display:flex; flex-direction:column; }
+.app-dialog[open] .dlg-head,
+.app-dialog[open] .dlg-actions{ flex:0 0 auto; }
+.app-dialog[open] .dlg-body{ flex:1 1 auto; overflow:auto; }
+
+/* Keep detail image from dominating */
+#dImg { height: auto; max-height: 50vh; width: 100%; object-fit: cover; border-radius: 12px; }
+
+/* ================ Favorites ================ */
+.favs{ margin:1rem 0 2rem }
+
+#favList { display: grid; gap: .6rem; max-height: 260px; overflow:auto; padding-right:.25rem; }
+#favList::-webkit-scrollbar { height:8px; width:8px }
+#favList::-webkit-scrollbar-thumb { background:rgba(255,255,255,.15); border-radius:8px }
+
+#favList .fav-item{
+  display:flex; align-items:center; gap:.75rem;
+  padding:.5rem .75rem; border-radius:14px;
+  background: rgba(0,0,0,.35);
+  border:1px solid rgba(255,255,255,.08);
+  backdrop-filter: blur(4px);
+}
+#favList .fav-item img{
+  width:56px; height:56px; object-fit:cover; border-radius:8px; flex:none;
+}
+#favList .fav-item .grow{ flex:1; font-weight:600; color:#f3f4f6; }
+#favList .fav-item .btn{
+  padding:.4rem .6rem; border-radius:10px;
+  border:1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.06); color:#f3f4f6;
+}
+#favList .fav-item .btn:hover{ background: rgba(255,255,255,.1); }
+
+.fav-header{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:.75rem; margin:.5rem 0 .25rem;
+}
+
+#clearFavs.btn.subtle{
+  background:transparent; color:#e5e7eb; border:1px solid rgba(255,255,255,.18);
+  padding:.35rem .6rem; border-radius:10px;
+}
+
+/* ================ Footer ================ */
+.footer{
+  margin-top: auto;
+  padding: 1rem;
+  text-align: center;
+  color: var(--muted);
+  border-top: 0;
+  box-shadow: none;
+  background: transparent;
+}
+
+/* Safety: hide any <hr> */
+hr{ display:none !important; height:0 !important; border:0 !important; }
+
+/* ================ Responsive ================ */
+@media (max-width: 860px){
+  .card{ grid-template-columns:1fr }
+  .grid-2{ grid-template-columns:1fr }
+}
+
+/* ---- Skeletons ---- */
+@keyframes sk-shimmer { 0% { background-position:-200% 0 } 100% { background-position:200% 0 } }
+.sk, .sk-img, .sk-line, .sk-pill{
+  position:relative; overflow:hidden; border-radius:12px; background:
+    linear-gradient(90deg, rgba(255,255,255,.04), rgba(255,255,255,.12), rgba(255,255,255,.04));
+  background-size:200% 100%; animation: sk-shimmer 1.2s linear infinite;
+}
+.card-sm.sk{ border:1px solid rgba(255,255,255,.1); }
+.sk-img{ width:100%; aspect-ratio: 16/10; border-bottom-left-radius:0; border-bottom-right-radius:0; }
+.sk-line{ height:12px; margin:.4rem 0; }
+.sk-line.w60{ width:60% } .sk-line.w40{ width:40% }
+.sk-buttons{ display:flex; gap:.5rem; margin-top:.5rem }
+.sk-pill{ width:70px; height:28px; border-radius:999px }
+
+/* ---- Print: only the recipe content ---- */
+@media print {
+  body { background:#fff !important; }
+  header, nav, .fav-header, #favList, #results, #searchForm, .tabs, footer { display:none !important; }
+  .printable { display:block !important; }
+}
+
+.btn.subtle[disabled]{ opacity:.45; cursor:not-allowed; pointer-events:none; }
