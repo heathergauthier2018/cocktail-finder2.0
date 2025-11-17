@@ -153,5 +153,5 @@ This software is provided “as is,” with no warranty of any kind. The owner i
 arising from viewing or referencing the code.
 
 For licensing or commercial inquiries:
-heathergauthier2018@gmail.com
+heathergauthier18@gmail.com
 
