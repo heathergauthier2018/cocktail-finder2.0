@@ -6,13 +6,13 @@
   <meta name="color-scheme" content="dark" />
 
   <link rel="preconnect" href="https://www.thecocktaildb.com" crossorigin>
-  <title>Cocktail Finder — Random + Search (v607)</title>
+  <title>Cocktail Finder — Random + Search (v613)</title>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
   <!-- Main CSS (cache-busted) -->
-  <link rel="stylesheet" href="styles.css?v=607" />
+  <link rel="stylesheet" href="styles.css?v=613" />
 
   <!-- Minimal base styles shared with the external CSS -->
   <style>
@@ -132,7 +132,10 @@
         <div class="fav-header" style="gap:.5rem">
           <span class="muted small">Saved drinks</span>
           <div style="display:flex;gap:.5rem;align-items:center">
-            <button id="downloadFavs" class="btn subtle" type="button" title="Download favorites as PDF">Download Favorites (PDF)</button>
+            <!-- Text updated here -->
+            <button id="downloadFavs" class="btn subtle" type="button" title="Download favorites">
+              Download Favorites
+            </button>
             <button id="clearFavs" class="btn subtle" type="button">Clear all</button>
           </div>
         </div>
@@ -145,7 +148,6 @@
     <small>
       Data &amp; images:
       <a href="https://www.thecocktaildb.com/api.php" target="_blank" rel="noreferrer noopener">TheCocktailDB</a>
-      · <span id="build">v607</span>
     </small>
   </footer>
 
