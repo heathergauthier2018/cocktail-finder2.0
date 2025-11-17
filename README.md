@@ -1,154 +1,122 @@
-A lightweight single-page cocktail discovery app using TheCocktailDB API
-(API-focused, clean, technical)
+🍹 Cocktail Finder 2.0
 
-🍹 Cocktail Finder
+A lightweight, fast, and friendly single-page cocktail discovery app powered by TheCocktailDB API.
+Users can generate random cocktails, search by name, and save their favorites — all with clean UI and zero friction.
 
-A fast, simple, mobile-friendly web app that lets you:
-
-Generate random cocktail recipes
-
-Search for cocktails by name
-
-Save your favorites using localStorage
-
-It is built to be lightweight, approachable, and fun.
-
-Live Demo:
-👉 https://heathergauthier2018.github.io/cocktail-finder2.0/
+👉 Live Demo:
+https://heathergauthier2018.github.io/cocktail-finder2.0/
 
 ✨ Features
-🍀 Random Mode
+🍀 Random Cocktail Generator
 
-Fetches a random cocktail from the API
+Fetches a completely random cocktail
 
-Displays full details (ingredients, instructions, glass type)
+Includes image, ingredients, instructions, and glass type
 
-Smooth re-generate flow
+One-click “Generate Another” flow
 
-🔍 Search Mode
+🔍 Search
 
-Search for cocktails by full or partial name
+Search cocktails by full or partial name
 
-Clean grid results
+Displays results in a clean card grid
 
-Expand for detailed view
+Expand a cocktail for full details
 
 ❤️ Favorites
 
-Save any drink to a persistent favorites list
+Save & remove favorites
 
-Stored via localStorage
+Stored using localStorage
 
-Quick remove / revisit
+Persistent between sessions
 
-🛠 Tech Stack
+📱 Fully Responsive
+
+Optimized for desktop, tablet, and mobile.
+
+🛠️ Tech Stack
+
+Frontend:
 
 HTML5
 
 CSS3
 
-Vanilla JavaScript
+JavaScript (Vanilla JS)
+
+Data Source:
 
 TheCocktailDB API
 
-LocalStorage
+Persistence:
 
-Responsive design principles
+localStorage
 
-🧩 Architecture Diagram
-index.html
-│
-└── app.js
-    ├── fetchRandomDrink()
-    ├── searchDrinks(query)
-    ├── renderRandomView()
-    ├── renderSearchView()
-    ├── renderFavoritesView()
-    └── localStorage helpers
+🗂️ Folder Structure
 
-📂 Project Structure
-cocktail-finder/
-│── index.html
-│── style.css
-│── script.js
-└── README.md
+Matches your current file layout exactly:
 
-🚀 Installation
+COCKTAIL-FINDER2.0/
+│── .vscode/
+│── img/                   # Images & icons
+│── index.html             # Main UI
+│── script.js              # App logic
+│── styles.css             # Stylesheet
+└── README.md              # Project documentation
 
-No build tools required.
+🔧 Installation & Usage
 
-Clone repo:
+Clone the repository:
 
-git clone https://github.com/yourusername/cocktail-finder.git
-cd cocktail-finder
+git clone https://github.com/heathergauthier2018/cocktail-finder2.0.git
+cd cocktail-finder2.0
 
 
-Open index.html in your browser.
+Open the app:
 
-🔗 API Reference — TheCocktailDB
+Just open index.html directly in any browser.
 
-Endpoints used:
-
+🔌 API Endpoints Used
 Random Cocktail
 GET https://www.thecocktaildb.com/api/json/v1/1/random.php
 
 Search by Name
 GET https://www.thecocktaildb.com/api/json/v1/1/search.php?s={query}
 
-🧪 Testing (Recommended Upgrade)
+🧩 Architecture Overview
 
-Later enhancements:
+High-level flow of script.js:
 
-Add Cypress UI tests
+script.js
+│
+├── fetchRandomDrink()
+├── fetchBySearch()
+├── renderRandomView()
+├── renderSearchResults()
+├── renderFavorites()
+├── saveFavorite()
+├── removeFavorite()
+└── loadFavorites()
 
-Add Postman API tests
-
-Add input validation unit tests
-
-🚧 Known Limitations
-
-Some cocktails in API lack ingredients
-
-No ingredient filtering yet
-
-No mobile animations (planned)
-
-Search results cannot currently sort or filter
-
-🗺️ Roadmap
-Short Term
+🧪 Future Enhancements
 
 Ingredient filters
 
-Better empty states
+Mocktail-only mode
 
-UI polish
-
-Medium Term
-
-“Build My Bar” feature → suggestions based on your ingredients
+“Build My Bar” → suggest drinks based on ingredients the user already has
 
 Recently viewed
 
-Mocktail-only mode
+Favorites sorting & tagging
 
-Long Term
+Shareable recipe cards
 
-Flavor graph
+📸 Screenshots
 
-Recommendations engine
+(Add files inside /img and link them here.)
 
-Tagging system (“summer,” “cozy,” “tropical”)
-
-📸 Screenshots (Add later)
-/assets/random.png
-/assets/search.png
-/assets/favorites.png
-
-💛 Motivation
-
-Built as a fun, approachable way to explore cocktails, learn ingredients, and quickly save favorites — all without accounts or complexity.
-
-🤍 License
+📝 License
 
 MIT License
