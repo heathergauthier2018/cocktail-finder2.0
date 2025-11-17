@@ -119,4 +119,39 @@ Shareable recipe cards
 
 📝 License
 
-MIT License
+Cocktail Finder — All Rights Reserved License  
+Copyright © 2025 Heather Gauthier
+
+All rights reserved.
+
+This project, including all code, designs, documentation, and assets, is protected under copyright
+and remains the exclusive property of Heather Gauthier.
+
+You MAY NOT:
+- Copy or redistribute this code
+- Use the code in a personal, commercial, or academic project
+- Modify, adapt, or republish the code
+- Use any part of the UI, logic, or features in your own apps
+- Sell or sublicense any portion of the code
+- Create derivative projects using this codebase
+
+You MAY:
+- View the project for learning or reference
+- Clone the repository for personal, local-only use
+- Inspect the logic for educational purposes
+
+Future Development:
+Cocktail Finder may evolve into a commercial application. Unauthorized reuse or republishing
+of the code, including core features and concepts, is strictly prohibited.
+
+Ownership:
+All intellectual property rights remain with: Heather Gauthier.
+No rights are granted to users other than the ability to view code.
+
+Liability:
+This software is provided “as is,” with no warranty of any kind. The owner is not liable for any issues
+arising from viewing or referencing the code.
+
+For licensing or commercial inquiries:
+heathergauthier2018@gmail.com
+
