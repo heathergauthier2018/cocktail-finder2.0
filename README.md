@@ -1,5 +1,3 @@
-🍸 README #2 — Cocktail Finder (API Project)
-
 A lightweight single-page cocktail discovery app using TheCocktailDB API
 (API-focused, clean, technical)
 
