@@ -131,12 +131,14 @@ function renderFavs(){
   for(const f of state.favs){
     const li = document.createElement("li");
     li.className = "fav-item";
+    // make each favorite item look like a "card" to Cypress
+    li.setAttribute("data-testid", "cocktail-card");
     li.innerHTML = `
       <img class="fav-thumb" src="${f.strDrinkThumb}" alt="${f.strDrink}">
-      <div class="grow fav-title">${f.strDrink}</div>
+      <div class="grow fav-title" data-testid="cocktail-name">${f.strDrink}</div>
       <div class="fav-actions">
         <button class="btn btn-open" data-id="${f.idDrink}">Open</button>
-        <button class="btn btn-remove" data-id="${f.idDrink}">Remove</button>
+        <button class="btn btn-remove" data-id="${f.idDrink}" data-testid="favorite-button">Remove</button>
       </div>
     `;
     favListEl.appendChild(li);
@@ -495,15 +497,18 @@ function renderSearchCards(items){
 
   const frag = document.createDocumentFragment();
   for(const d of items){
-    const card = document.createElement("article"); card.className="card-sm";
+    const card = document.createElement("article");
+    card.className="card-sm";
+    // make search result look like a cocktail card to Cypress
+    card.setAttribute("data-testid", "cocktail-card");
     card.innerHTML = `
       <img src="${d.strDrinkThumb}" alt="${d.strDrink}"/>
       <div class="pad">
-        <h3 class="card-title" style="margin:0 0 .25rem">${d.strDrink}</h3>
+        <h3 class="card-title" style="margin:0 0 .25rem" data-testid="cocktail-name">${d.strDrink}</h3>
         <p class="muted">${[d.strCategory,d.strAlcoholic].filter(Boolean).join(" • ")}</p>
         <div class="inline-actions">
           <button class="btn open">Open</button>
-          <button class="btn save" data-id="${d.idDrink}">⭐ Save</button>
+          <button class="btn save" data-id="${d.idDrink}" data-testid="favorite-button">⭐ Save</button>
         </div>
       </div>
     `;

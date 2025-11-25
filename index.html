@@ -64,16 +64,16 @@
     <section id="pane-random" class="pane">
       <div class="controls">
         <button id="newBtn" class="btn primary">New Drink</button>
-        <button id="saveBtn" class="btn">⭐ Save</button>
+        <button id="saveBtn" class="btn" data-testid="favorite-button">⭐ Save</button>
         <button id="copyBtn" class="btn">📋 Copy</button>
         <button id="shareBtn" class="btn">🔗 Share</button>
         <button id="printBtn" class="btn">🖨️ Print</button>
       </div>
 
-      <article id="card" class="card" hidden>
-        <img id="thumb" class="thumb" alt="Drink image" />
+      <article id="card" class="card" hidden data-testid="cocktail-card">
+        <img id="thumb" class="thumb" alt="Drink image" data-testid="cocktail-image" />
         <div class="card-body">
-          <h2 id="title" class="card-title"></h2>
+          <h2 id="title" class="card-title" data-testid="cocktail-name"></h2>
           <p id="meta" class="muted"></p>
           <div class="grid-2">
             <div>
@@ -82,7 +82,7 @@
             </div>
             <div>
               <h3 class="card-section">Instructions</h3>
-              <p id="instructions" class="instructions"></p>
+              <p id="instructions" class="instructions" data-testid="cocktail-instructions"></p>
             </div>
           </div>
         </div>
@@ -101,7 +101,7 @@
       <!-- Result counter -->
       <p id="resultCount" class="muted small" style="margin:.25rem 0 .5rem"></p>
 
-      <section id="results" class="grid"></section>
+      <section id="results" class="grid" data-testid="search-results"></section>
 
       <dialog id="detailsDialog" class="app-dialog">
         <div class="dlg-head">
@@ -117,7 +117,7 @@
           <p id="dInstructions" class="instructions"></p>
         </div>
         <div class="dlg-actions">
-          <button id="dSaveBtn" class="btn-dlg">⭐ Save</button>
+          <button id="dSaveBtn" class="btn-dlg" data-testid="favorite-button">⭐ Save</button>
           <button id="dCopyBtn" class="btn-dlg">📋 Copy</button>
           <button id="dShareBtn" class="btn-dlg">🔗 Share</button>
           <button id="dPrintBtn" class="btn-dlg">🖨️ Print</button>
@@ -139,7 +139,7 @@
             <button id="clearFavs" class="btn subtle" type="button">Clear all</button>
           </div>
         </div>
-        <ul id="favList" class="fav-list"></ul>
+        <ul id="favList" class="fav-list" data-testid="favorites-list"></ul>
       </details>
     </section>
   </main>
