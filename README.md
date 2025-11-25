@@ -1,4 +1,3 @@
-=======
 # 🍹 Cocktail Finder 2.0 — A Lightweight Cocktail Explorer
 
 **Cocktail Finder** is a lightweight, fast, and friendly single-page cocktail discovery app powered by **TheCocktailDB**.  
