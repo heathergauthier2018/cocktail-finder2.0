@@ -117,35 +117,6 @@ COCKTAIL-FINDER2.0/
 
 ---
 
-## 🚀 Running Cocktail Finder Locally
-
-You can run this project locally without any special build steps.
-
-### 1️⃣ Clone the repository
-
-```bash
-git clone https://github.com/heathergauthier2018/cocktail-finder2.0.git
-cd cocktail-finder2.0
-```
-
-### 2️⃣ Open the app
-
-Option A — Directly open the file:
-
-- Open `index.html` in your browser (double-click or drag into a browser window).
-
-Option B — Use a simple local server (optional, but nice for dev):
-
-```bash
-# Using Python 3
-python -m http.server 8000
-
-# Then visit:
-# http://localhost:8000
-```
-
----
-
 ## 🔌 API Endpoints Used
 
 ### 🎲 Random Cocktail
